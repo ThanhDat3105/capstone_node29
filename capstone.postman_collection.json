@@ -46,7 +46,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8000/api/capstone/get-img-user/1",
+					"raw": "localhost:8000/api/capstone/get-img-user-save/1",
 					"host": [
 						"localhost"
 					],
@@ -54,7 +54,7 @@
 					"path": [
 						"api",
 						"capstone",
-						"get-img-user",
+						"get-img-user-save",
 						"1"
 					]
 				}
@@ -159,7 +159,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8000/api/capstone/get-checkImg/5",
+					"raw": "localhost:8000/api/capstone/get-checkImg/3",
 					"host": [
 						"localhost"
 					],
@@ -168,7 +168,7 @@
 						"api",
 						"capstone",
 						"get-checkImg",
-						"5"
+						"3"
 					],
 					"query": [
 						{
@@ -193,7 +193,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8000/api/capstone/get-imageName?name=s",
+					"raw": "localhost:8000/api/capstone/get-imageName?name=r",
 					"host": [
 						"localhost"
 					],
@@ -206,7 +206,7 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "s"
+							"value": "r"
 						}
 					]
 				}

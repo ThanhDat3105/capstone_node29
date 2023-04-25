@@ -89,15 +89,15 @@ const getUser = async (req, res) => {
 };
 
 const getImgUserSave = async (req, res) => {
-  // try {
+  try {
     let { nguoi_dung_id } = req.params;
 
     let data = await model.luu_anh.findAll({ where: { nguoi_dung_id } });
 
     successCode(res, data, "lấy dữ liệu thành công");
-  // } catch (error) {
-  //   failCode(res, "lỗi BE");
-  // }
+  } catch (error) {
+    failCode(res, "lỗi BE");
+  }
 };
 
 const getImgUserCreate = async (req, res) => {
@@ -112,9 +112,9 @@ const getImgUserCreate = async (req, res) => {
 
 const deleteImg = async (req, res) => {
   try {
-    let { nguoi_dung_id } = req.params;
+    let { hinh_id } = req.params;
 
-    await model.hinh_anh.destroy({ where: { nguoi_dung_id } });
+    await model.hinh_anh.destroy({ where: { hinh_id } });
 
     successCode(res, "xóa thành công");
   } catch (error) {
@@ -148,6 +148,17 @@ const signUp = async (req, res) => {
     const { email, mat_khau, ho_ten, tuoi, anh_dai_dien } = req.body;
     let data = { email, mat_khau, ho_ten, tuoi, anh_dai_dien };
 
+    let checkData = await model.nguoi_dung.findAll();
+
+    let emailCheck = checkData.map((item) => {
+      return item.email;
+    });
+
+    for (let index = 0; index < emailCheck.length; index++) {
+      const element = emailCheck[index];
+      if (element == email) return failCode(res, "email bị trùng");
+    }
+
     await model.nguoi_dung.create(data);
     successCode(res, "đăng ký thành công");
   } catch (error) {
@@ -177,7 +188,7 @@ const updateInfoUser = async (req, res) => {
 
     await model.nguoi_dung.update(data, { where: { nguoi_dung_id } });
 
-    successCode(res, data, "thêm người dùng thành công");
+    successCode(res, data, "cập nhật thông tin thành công");
   } catch (error) {
     failCode(res, "lỗi BE");
   }
@@ -190,7 +201,7 @@ const saveInfoComment = async (req, res) => {
     let data = { nguoi_dung_id, hinh_id, ngay_binh_luan, noi_dung };
 
     await model.binh_luan.create(data);
-    successCode(res, data, "lưu thành công thành công");
+    successCode(res, data, "lưu thành công");
   } catch (error) {
     failCode(res, "lỗi BE");
   }
